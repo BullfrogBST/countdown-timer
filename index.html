@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Countdown Timer</title>
+</head>
+<body>
+    <div class="content">
+        <div class="header">
+            <h1>Countdown Timer</h1>
+        </div>
+        <div class="new-event">
+            <form action="" class="event-details">
+                <div class="event-name">
+                    <label for="event-name-input">Event Name: </label>
+                    <input type="text" name="event-name-input" placeholder="Enter your event name" required>
+                </div>
+                <div class="event-date">
+                    <label for="event-date-input">Date: </label>
+                    <input type="date" name="event-date-input" required>
+                </div>
+                <div class="event-time">
+                    <label for="event-time-input">Time (optional): </label>
+                    <input type="time" name="event-time-input">
+                </div>
+                <div class="event-submit">
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+        <div class="countdown-timer">
+            <h1 class="countdown">00:00:00</h1>
+        </div>
+    </div>
+</body>
+</html>
