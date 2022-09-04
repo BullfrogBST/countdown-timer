@@ -1,0 +1,120 @@
+*{
+    transition: .3s ease-in-out;
+}
+
+body{
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+    justify-content: center;
+
+    font-family: 'Montserrat', sans-serif;
+    color: #FFE1A8;
+
+    background-color: #472D30;
+}
+
+.content{
+    width:80%;
+    height: 100%;
+
+    text-align: center;
+}
+
+.header{
+    font-size: 2rem;
+}
+
+.event-form{
+    width: 100%;
+    height: 5rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.event-form-inputs{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+
+    gap: 3rem;
+}
+
+.event-name, .event-date, .event-time{
+    font-size: 1.5rem;
+    font-weight: lighter;
+
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.event-input{
+    border: 1px solid #472D30;
+
+    color: #472D30;
+
+    height: 2rem;
+}
+
+.event-submit-btn{
+    border: 1px solid #FFE1A8;
+
+    background-color: #E26D5C;
+    color: #FFE1A8;
+
+    width: 5rem;
+    height: 2rem;
+}
+
+.event-submit-btn:hover{
+    background-color: #E3865D;
+}
+
+.events-grid{
+    margin: 5rem 0;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%/1, max(64px, 100%/4)), 1fr));
+    grid-gap: 2rem;
+}
+
+.event-card{
+
+    border: 1px solid #FFE1A8;
+
+    padding: 1rem;
+}
+
+.event-card:hover{
+    transform: scale(1.1);
+}
+
+.event-card:hover .event-card-delete{
+    visibility: visible;
+}
+
+.event-card-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.event-card-title{
+    width: 100%;
+}
+
+.event-card-delete{
+    position: relative;
+    right: 5%;
+
+    visibility: hidden;
+}
+
+.event-card-delete:hover{
+    transform: scale(1.1);
+    color: #E26D5C;
+}

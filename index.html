@@ -4,7 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/8f93587ab7.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script src="index.js" ></script>
     <title>Countdown Timer</title>
 </head>
 <body>
@@ -13,28 +18,35 @@
             <h1>Countdown Timer</h1>
         </div>
         <div class="new-event">
-            <form action="" class="event-details">
-                <div class="event-name">
-                    <label for="event-name-input">Event Name: </label>
-                    <input type="text" name="event-name-input" placeholder="Enter your event name" required>
-                </div>
-                <div class="event-date">
-                    <label for="event-date-input">Date: </label>
-                    <input type="date" name="event-date-input" required>
-                </div>
-                <div class="event-time">
-                    <label for="event-time-input">Time (optional): </label>
-                    <input type="time" name="event-time-input">
+            <form action="" class="event-form">
+                <div class="event-form-inputs">
+                    <div class="event-name">
+                        <label for="event-name-input">Event Name: </label>
+                        <input type="text" name="event-name-input" class="event-input" placeholder="Enter your event name" required>
+                    </div>
+                    <div class="event-date">
+                        <label for="event-date-input">Date: </label>
+                        <input type="date" name="event-date-input" class="event-input" required>
+                    </div>
+                    <div class="event-time">
+                        <label for="event-time-input">Time (optional): </label>
+                        <input type="time" name="event-time-input" step="1" class="event-input">
+                    </div>
                 </div>
                 <div class="event-submit">
-                    <button type="submit">Submit</button>
+                    <button type="submit" class="event-submit-btn">Submit</button>
                 </div>
             </form>
         </div>
         <div class="events-grid">
             <div class="event-card">
-                <div class="event-card-title">
-                    <h3>Escape Room</h3>
+                <div class="event-card-top">
+                    <div class="event-card-title">
+                        <h3>Escape Room</h3>
+                    </div>
+                    <div class="event-card-delete">
+                        <i class="fa-solid fa-x" id="card-delete-btn"></i>
+                    </div>
                 </div>
                 <div class="event-date-time">
                     <p>09/03/22, 3:00 PM</p>
@@ -44,10 +56,15 @@
                 </div>
             </div>
             <div class="event-card">
-                <div class="event-card-title">
-                    <h3>Escape Room</h3>
+                <div class="event-card-top">
+                    <div class="event-card-title">
+                        <h3>Escape Room</h3>
+                    </div>
+                    <div class="event-card-delete">
+                        <i class="fa-solid fa-x" id="card-delete-btn"></i>
+                    </div>
                 </div>
-                <div class="event-card-date">
+                <div class="event-date-time">
                     <p>09/03/22, 3:00 PM</p>
                 </div>
                 <div class="event-card-timer">
@@ -55,10 +72,15 @@
                 </div>
             </div>
             <div class="event-card">
-                <div class="event-card-title">
-                    <h3>Escape Room</h3>
+                <div class="event-card-top">
+                    <div class="event-card-title">
+                        <h3>Escape Room</h3>
+                    </div>
+                    <div class="event-card-delete">
+                        <i class="fa-solid fa-x" id="card-delete-btn"></i>
+                    </div>
                 </div>
-                <div class="event-card-date">
+                <div class="event-date-time">
                     <p>09/03/22, 3:00 PM</p>
                 </div>
                 <div class="event-card-timer">
@@ -66,10 +88,15 @@
                 </div>
             </div>
             <div class="event-card">
-                <div class="event-card-title">
-                    <h3>Escape Room</h3>
+                <div class="event-card-top">
+                    <div class="event-card-title">
+                        <h3>Escape Room</h3>
+                    </div>
+                    <div class="event-card-delete">
+                        <i class="fa-solid fa-x" id="card-delete-btn"></i>
+                    </div>
                 </div>
-                <div class="event-card-date">
+                <div class="event-date-time">
                     <p>09/03/22, 3:00 PM</p>
                 </div>
                 <div class="event-card-timer">
@@ -77,10 +104,15 @@
                 </div>
             </div>
             <div class="event-card">
-                <div class="event-card-title">
-                    <h3>Escape Room</h3>
+                <div class="event-card-top">
+                    <div class="event-card-title">
+                        <h3>Escape Room</h3>
+                    </div>
+                    <div class="event-card-delete">
+                        <i class="fa-solid fa-x" id="card-delete-btn"></i>
+                    </div>
                 </div>
-                <div class="event-card-date">
+                <div class="event-date-time">
                     <p>09/03/22, 3:00 PM</p>
                 </div>
                 <div class="event-card-timer">
@@ -88,10 +120,15 @@
                 </div>
             </div>
             <div class="event-card">
-                <div class="event-card-title">
-                    <h3>Escape Room</h3>
+                <div class="event-card-top">
+                    <div class="event-card-title">
+                        <h3>Escape Room</h3>
+                    </div>
+                    <div class="event-card-delete">
+                        <i class="fa-solid fa-x" id="card-delete-btn"></i>
+                    </div>
                 </div>
-                <div class="event-card-date">
+                <div class="event-date-time">
                     <p>09/03/22, 3:00 PM</p>
                 </div>
                 <div class="event-card-timer">
@@ -99,10 +136,15 @@
                 </div>
             </div>
             <div class="event-card">
-                <div class="event-card-title">
-                    <h3>Escape Room</h3>
+                <div class="event-card-top">
+                    <div class="event-card-title">
+                        <h3>Escape Room</h3>
+                    </div>
+                    <div class="event-card-delete">
+                        <i class="fa-solid fa-x" id="card-delete-btn"></i>
+                    </div>
                 </div>
-                <div class="event-card-date">
+                <div class="event-date-time">
                     <p>09/03/22, 3:00 PM</p>
                 </div>
                 <div class="event-card-timer">
@@ -110,10 +152,15 @@
                 </div>
             </div>
             <div class="event-card">
-                <div class="event-card-title">
-                    <h3>Escape Room</h3>
+                <div class="event-card-top">
+                    <div class="event-card-title">
+                        <h3>Escape Room</h3>
+                    </div>
+                    <div class="event-card-delete">
+                        <i class="fa-solid fa-x" id="card-delete-btn"></i>
+                    </div>
                 </div>
-                <div class="event-card-date">
+                <div class="event-date-time">
                     <p>09/03/22, 3:00 PM</p>
                 </div>
                 <div class="event-card-timer">
@@ -121,10 +168,15 @@
                 </div>
             </div>
             <div class="event-card">
-                <div class="event-card-title">
-                    <h3>Escape Room</h3>
+                <div class="event-card-top">
+                    <div class="event-card-title">
+                        <h3>Escape Room</h3>
+                    </div>
+                    <div class="event-card-delete">
+                        <i class="fa-solid fa-x" id="card-delete-btn"></i>
+                    </div>
                 </div>
-                <div class="event-card-date">
+                <div class="event-date-time">
                     <p>09/03/22, 3:00 PM</p>
                 </div>
                 <div class="event-card-timer">
@@ -132,10 +184,15 @@
                 </div>
             </div>
             <div class="event-card">
-                <div class="event-card-title">
-                    <h3>Escape Room</h3>
+                <div class="event-card-top">
+                    <div class="event-card-title">
+                        <h3>Escape Room</h3>
+                    </div>
+                    <div class="event-card-delete">
+                        <i class="fa-solid fa-x" id="card-delete-btn"></i>
+                    </div>
                 </div>
-                <div class="event-card-date">
+                <div class="event-date-time">
                     <p>09/03/22, 3:00 PM</p>
                 </div>
                 <div class="event-card-timer">
@@ -143,10 +200,15 @@
                 </div>
             </div>
             <div class="event-card">
-                <div class="event-card-title">
-                    <h3>Escape Room</h3>
+                <div class="event-card-top">
+                    <div class="event-card-title">
+                        <h3>Escape Room</h3>
+                    </div>
+                    <div class="event-card-delete">
+                        <i class="fa-solid fa-x" id="card-delete-btn"></i>
+                    </div>
                 </div>
-                <div class="event-card-date">
+                <div class="event-date-time">
                     <p>09/03/22, 3:00 PM</p>
                 </div>
                 <div class="event-card-timer">
@@ -154,10 +216,15 @@
                 </div>
             </div>
             <div class="event-card">
-                <div class="event-card-title">
-                    <h3>Escape Room</h3>
+                <div class="event-card-top">
+                    <div class="event-card-title">
+                        <h3>Escape Room</h3>
+                    </div>
+                    <div class="event-card-delete">
+                        <i class="fa-solid fa-x" id="card-delete-btn"></i>
+                    </div>
                 </div>
-                <div class="event-card-date">
+                <div class="event-date-time">
                     <p>09/03/22, 3:00 PM</p>
                 </div>
                 <div class="event-card-timer">
