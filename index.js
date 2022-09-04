@@ -1,9 +1,10 @@
 // Create Event class
 class Event {
-    constructor(name, date, time) {
+    constructor(name, date, time, timeLeft = '') {
         this.name = name;
         this.date = date;
         this.time = time;
+        this.timeLeft = timeLeft
     }
 
     delete() {
@@ -29,9 +30,16 @@ const allEvents = [];
 // Detect when the event form is submitted, collect the data, and call the makeEvent() function with the data passed in
 
 eventForm.addEventListener('submit', e => {
+    e.preventDefault();
+
     eventData.append('eventName', eventNameInput.value);
+    eventNameInput.value = '';
+
     eventData.append('eventDate', eventDateInput.value);
+    eventDateInput.value = '';
+
     eventData.append('eventTime', eventTimeInput.value);
+    eventTimeInput.value = '';
 
     makeEvent ( eventData.get('eventName'), eventData.get('eventDate'), eventData.get('eventTime') )
 });
@@ -45,7 +53,56 @@ function makeEvent (eventName, eventDate, eventTime) {
         // Make a new card element with the data stored in the correct places
 
         allEvents.push ( new Event(eventName, eventDate, eventTime) );
+
+        console.log(allEvents[allEvents.length-1])
     }
+
+    // Delete all elements from eventData
+
+    eventData.delete('eventName');
+    eventData.delete('eventDate');
+    eventData.delete('eventTime');
+
+    // Call loadCards()
+    loadCards();
+}
+
+//Declare getCardFormat()
+
+function getCardFormat(eventName, eventDate, eventTime, eventTimeLeft) {
+    return `<div class="event-card">` +
+    `    <div class="event-card-top">` +
+    `        <div class="event-card-title">` +
+    `            <h3>${eventName}</h3>` +
+    `        </div>` +
+    `        <div class="event-card-delete">` +
+    `            <i class="fa-solid fa-x" id="card-delete-btn"></i>` +
+    `        </div>` +
+    `    </div>` +
+    `    <div class="event-date-time">` +
+    `        <p>${eventDate}, ${eventTime}</p>` +
+    `    </div>` +
+    `    <div class="event-card-timer">` +
+    `        <h3 id="event-timer">00:00:00</h3>` +
+    `    </div>` +
+    `</div>`;
+}
+
+// Declare loadCards()
+
+async function loadCards(){
+    //Load all event cards
+
+    let cardsToLoad = []
+    eventGrid.innerHTML = ''
+
+    for (let i = 0; i < allEvents.length; i++) {
+        const cardFormat = getCardFormat(allEvents[i].name, allEvents[i].date, allEvents[i].timeLeft)
+
+        cardsToLoad.push(cardFormat);
+    }
+
+    cardsToLoad.forEach( card => eventGrid.innerHTML += card );
 }
 
 // Every second, call the countDown() function
