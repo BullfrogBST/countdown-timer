@@ -1,3 +1,17 @@
+// Create Event class
+class Event {
+    constructor(name, date, time) {
+        this.name = name;
+        this.date = date;
+        this.time = time;
+    }
+
+    delete() {
+        this.name = null;
+        this.date = null;
+        this.time = null;
+    }
+}
 // Access all necessary elements
 const eventForm = document.querySelector('.event-form');
 let eventData = new FormData(eventForm);
