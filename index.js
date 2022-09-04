@@ -1,10 +1,16 @@
 // Access all necessary elements
+const eventForm = document.querySelector(".event-form");
+const eventGrid = document.querySelector(".event-grid");
 
 // Detect when the event form is submitted, collect the data, and call the makeEvent() function with the data passed in.
 
 // Declare makeEvent()
 
-// Make a new card element with the data stored in the correct places if there's less than 12 events total
+// Check if there are less than 12 cards
+
+// Make a new card element with a unique ID and the data stored in the correct places
+
+// Set the eventCards variable to be all of the event cards
 
 // Every second, call the countDown() function
 
@@ -16,4 +22,4 @@
 
 // Declare deleteCard()
 
-//
+// Delete the card with the ID that was passed in
