@@ -64,12 +64,15 @@ function makeEvent (eventName, eventDate, eventTime) {
     eventData.delete('eventTime');
 
     // Call loadCards()
+
     loadCards();
 }
 
 //Declare getCardFormat()
 
 function getCardFormat(eventName, eventDate, eventTime, eventTimeLeft) {
+    // Make and return format for the HTML event cards
+
     return `<div class="event-card">` +
     `    <div class="event-card-top">` +
     `        <div class="event-card-title">` +
@@ -83,7 +86,7 @@ function getCardFormat(eventName, eventDate, eventTime, eventTimeLeft) {
     `        <p>${eventDate}, ${eventTime}</p>` +
     `    </div>` +
     `    <div class="event-card-timer">` +
-    `        <h3 id="event-timer">00:00:00</h3>` +
+    `        <h3 id="event-timer">${eventTimeLeft}</h3>` +
     `    </div>` +
     `</div>`;
 }
@@ -93,7 +96,10 @@ function getCardFormat(eventName, eventDate, eventTime, eventTimeLeft) {
 async function loadCards(){
     //Load all event cards
 
+    // Declare the cardsToLoad array, which will be looped through to display all of the cards
     let cardsToLoad = []
+
+    // Reset the innerHTML of the grid area, so the cards can be reloaded
     eventGrid.innerHTML = ''
 
     for (let i = 0; i < allEvents.length; i++) {
