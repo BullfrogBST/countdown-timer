@@ -1,16 +1,30 @@
 // Create Event class
 class Event {
-    constructor(name, date, time, timeLeft = '') {
+    constructor(name, date, time) {
         this.name = name;
-        this.date = date;
+
+        this.date = date.replace(/-/g, ' ');
+
         this.time = time;
-        this.timeLeft = timeLeft
+
+        this.dateAndTime = `${this.date} ${this.time} GMT`
+
+        this.secondsLeft = '00';
+        this.minutesLeft = '00';
+        this.hoursLeft = '00';
+        this.daysLeft = '00';
+
+        this.timeLeft = `${this.daysLeft}:${this.hoursLeft}:${this.minutesLeft}:${this.secondsLeft}`;
     }
 
     delete() {
         this.name = null;
         this.date = null;
         this.time = null;
+    }
+
+    parseDateAndTime(){
+        return Date.parse(this.dateAndTime);
     }
 }
 
@@ -38,8 +52,12 @@ eventForm.addEventListener('submit', e => {
     eventData.append('eventDate', eventDateInput.value);
     eventDateInput.value = '';
 
-    eventData.append('eventTime', eventTimeInput.value);
-    eventTimeInput.value = '';
+    if(eventTimeInput.value != ''){
+        eventData.append('eventTime', eventTimeInput.value);
+        eventTimeInput.value = '';
+    } else{
+        eventData.append('eventTime', '00:00:00')
+    }
 
     makeEvent ( eventData.get('eventName'), eventData.get('eventDate'), eventData.get('eventTime') )
 });
@@ -103,7 +121,7 @@ async function loadCards(){
     eventGrid.innerHTML = ''
 
     for (let i = 0; i < allEvents.length; i++) {
-        const cardFormat = getCardFormat(allEvents[i].name, allEvents[i].date, allEvents[i].timeLeft)
+        const cardFormat = getCardFormat(allEvents[i].name, allEvents[i].date, allEvents[i].time, allEvents[i].timeLeft)
 
         cardsToLoad.push(cardFormat);
     }
@@ -113,9 +131,58 @@ async function loadCards(){
 
 // Every second, call the countDown() function
 
+setInterval( () => {
+    countDown();
+}, 1000)
+
+// Declare the msToTime() function
+
+function msToTime(milliseconds, currentCard) {
+    // Convert the number of milliseconds passed in to a DD:HH:MM:SS format
+
+    let seconds = milliseconds / 1000;
+    let minutes = Math.floor(seconds / 60);
+    let hours = Math.floor(minutes / 60);
+    let days = Math.floor(hours / 24);
+
+    // Pass the created format into the currentCard's object
+
+    currentCard.secondsLeft = Math.floor(seconds % 60);
+    currentCard.minutesLeft = Math.floor(minutes % 60);
+    currentCard.hoursLeft = Math.floor(hours / 24);
+    currentCard.daysLeft = Math.floor(days);
+}
+
 // Declare countDown()
 
-// For every event, calculate how much time is left until the event happens, and set the value of the timer to that.
+function countDown() {
+    /*
+      For every event, calculate how much time is left until the event happens, and set the value of the timer to that.
+    */
+
+    // Declare 'now' as the current time
+
+    let now = new Date().getTime();
+
+    // Loop through all events and calculate timeLeft
+
+    allEvents.forEach( card => {
+        // Calculate the time until the card's date
+
+        msToTime((card.parseDateAndTime() - now), card);
+
+        // Reload the timeLeft value
+
+        card.timeLeft = `${card.daysLeft}:${card.hoursLeft}:${card.minutesLeft}:${card.secondsLeft}`
+
+        console.log(card.secondsLeft);
+    })
+
+    // Load the cards again with the updated values
+
+    loadCards();
+}
+
 
 // When a delete button is clicked, find the parent event, and pass it in to the deleteCard() function
 
