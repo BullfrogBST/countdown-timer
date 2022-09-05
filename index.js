@@ -17,12 +17,6 @@ class Event {
         this.timeLeft = `${this.daysLeft}:${this.hoursLeft}:${this.minutesLeft}:${this.secondsLeft}`;
     }
 
-    delete() {
-        this.name = null;
-        this.date = null;
-        this.time = null;
-    }
-
     parseDateAndTime(){
         return Date.parse(this.dateAndTime);
     }
@@ -89,7 +83,7 @@ function makeEvent (eventName, eventDate, eventTime) {
 //Declare getCardFormat()
 
 function getCardFormat(eventName, eventDate, eventTime, eventTimeLeft) {
-    // Make and return format for the HTML event cards
+    // Make and return format for the HTML event cards with unique id's
 
     return `<div class="event-card">` +
     `    <div class="event-card-top">` +
@@ -97,7 +91,7 @@ function getCardFormat(eventName, eventDate, eventTime, eventTimeLeft) {
     `            <h3>${eventName}</h3>` +
     `        </div>` +
     `        <div class="event-card-delete">` +
-    `            <i class="fa-solid fa-x" id="card-delete-btn"></i>` +
+    `            <i class="fa-solid fa-x event-card-delete ${allEvents.length-1}" id="card-delete-btn"></i>` +
     `        </div>` +
     `    </div>` +
     `    <div class="event-date-time">` +
@@ -196,6 +190,23 @@ function reloadTimers() {
 
 // When a delete button is clicked, find the parent event, and pass it in to the deleteCard() function
 
-// Declare deleteCard()
+// Check if the eventGrid has been clicked
 
-// Delete the current card
+eventGrid.addEventListener( 'click', e => {
+    // Check if what has been clicked was a delete button
+
+    console.log(e.target)
+    if ( e.target.classList.contains('event-card-delete') ) {
+        // Extract ID from the selected button's classList
+
+        buttonID = e.target.classList[e.target.classList.length - 1];
+
+        // Delete the event with the index of the button's ID
+
+        allEvents.splice(buttonID, 1);
+
+        // Reload all cards
+
+        loadCards();
+    }
+})
