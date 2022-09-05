@@ -7,7 +7,7 @@ class Event {
 
         this.time = time;
 
-        this.dateAndTime = `${this.date} ${this.time} GMT`
+        this.dateAndTime = Date.parse(`${this.date} ${this.time} GMT`);
 
         this.secondsLeft = '00';
         this.minutesLeft = '00';
@@ -15,10 +15,6 @@ class Event {
         this.daysLeft = '00';
 
         this.timeLeft = `${this.daysLeft}:${this.hoursLeft}:${this.minutesLeft}:${this.secondsLeft}`;
-    }
-
-    parseDateAndTime(){
-        return Date.parse(this.dateAndTime);
     }
 }
 
@@ -33,7 +29,20 @@ const eventTimeInput = document.querySelector ('.event-time-input');
 
 const eventGrid = document.querySelector('.event-grid');
 
-const allEvents = [];
+let allEvents;
+
+// Check if the user's events are saved in the localStorage
+
+if(localStorage.getItem('allEvents') != null) {
+    // Get allEvents from localStorage
+
+    allEvents = JSON.parse(localStorage.getItem('allEvents'));
+    loadCards();
+} else {
+    // Set allEvents as an empty array
+
+    allEvents = [];
+}
 
 // Detect when the event form is submitted, collect the data, and call the makeEvent() function with the data passed in
 
@@ -65,8 +74,6 @@ function makeEvent (eventName, eventDate, eventTime) {
         // Make a new card element with the data stored in the correct places
 
         allEvents.push ( new Event(eventName, eventDate, eventTime) );
-
-        console.log(allEvents[allEvents.length-1])
     }
 
     // Delete all elements from eventData
@@ -121,6 +128,10 @@ async function loadCards(){
     }
 
     cardsToLoad.forEach( card => eventGrid.innerHTML += card );
+
+    // Save all loaded cards to localStorage
+
+    localStorage.setItem('allEvents', JSON.stringify(allEvents));
 }
 
 // Every second, call the countDown() function
@@ -163,7 +174,7 @@ function countDown() {
     allEvents.forEach( card => {
         // Calculate the time until the card's date
 
-        msToTime((card.parseDateAndTime() - now), card);
+        msToTime((card.dateAndTime - now), card);
 
         // Reload the timeLeft value
 
@@ -195,7 +206,6 @@ function reloadTimers() {
 eventGrid.addEventListener( 'click', e => {
     // Check if what has been clicked was a delete button
 
-    console.log(e.target)
     if ( e.target.classList.contains('event-card-delete') ) {
         // Extract ID from the selected button's classList
 
