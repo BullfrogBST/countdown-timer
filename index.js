@@ -104,7 +104,7 @@ function getCardFormat(eventName, eventDate, eventTime, eventTimeLeft) {
     `        <p>${eventDate}, ${eventTime}</p>` +
     `    </div>` +
     `    <div class="event-card-timer">` +
-    `        <h3 id="event-timer">${eventTimeLeft}</h3>` +
+    `        <h2 id="event-timer">${eventTimeLeft}</h2>` +
     `    </div>` +
     `</div>`;
 }
@@ -149,7 +149,7 @@ function msToTime(milliseconds, currentCard) {
 
     currentCard.secondsLeft = Math.floor(seconds % 60);
     currentCard.minutesLeft = Math.floor(minutes % 60);
-    currentCard.hoursLeft = Math.floor(hours / 24);
+    currentCard.hoursLeft = Math.floor(hours % 24);
     currentCard.daysLeft = Math.floor(days);
 }
 
@@ -173,19 +173,29 @@ function countDown() {
 
         // Reload the timeLeft value
 
-        card.timeLeft = `${card.daysLeft}:${card.hoursLeft}:${card.minutesLeft}:${card.secondsLeft}`
-
-        console.log(card.secondsLeft);
+        card.timeLeft = `${card.daysLeft}:${card.hoursLeft}:${card.minutesLeft}:${card.secondsLeft}`;
     })
 
-    // Load the cards again with the updated values
-
-    loadCards();
+    // Load the timer again with the updated values, passing in card
+    reloadTimers();
 }
 
+// Declare the reloadTimer() function
+
+function reloadTimers() {
+    // Access all timers from the Dom
+
+    let timers = document.querySelectorAll('.event-card-timer');
+
+    // Loop through the timers and update their data
+
+    for(let i = 0; i < timers.length; i++) {
+        timers[i].innerHTML = `<h2 id="event-timer">${allEvents[i].timeLeft}</h2>`
+    }
+}
 
 // When a delete button is clicked, find the parent event, and pass it in to the deleteCard() function
 
 // Declare deleteCard()
 
-// Delete the card with the ID that was passed in
+// Delete the current card
