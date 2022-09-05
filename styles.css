@@ -66,6 +66,8 @@ body{
     background-color: #E26D5C;
     color: #FFE1A8;
 
+    cursor: pointer;
+
     width: 5rem;
     height: 2rem;
 }
@@ -110,6 +112,8 @@ body{
 .event-card-delete{
     position: relative;
     right: 5%;
+
+    cursor: pointer;
 
     visibility: hidden;
 }
